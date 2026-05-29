@@ -1,0 +1,3080 @@
+{
+  "info": {
+    "_postman_id": "eca2cfcd-5918-4745-984a-1b1c515c1ed0",
+    "name": "API интернет-магазина",
+    "description": "Типичный интернет-магазин - демо-кейс Анны Вичуговой (расширенная версия для МСА, с JWT-аутентификацией)\n\nContact Support:\n Email: anna@mail.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51574628",
+    "_collection_link": "https://go.postman.co/collection/51574628-eca2cfcd-5918-4745-984a-1b1c515c1ed0?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "login",
+      "item": [
+        {
+          "name": "Просмотр страницы ввода логина и пароля (входа в систему)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Просмотр страницы ввода логина и пароля (входа в систему)"
+          },
+          "response": [
+            {
+              "name": "Успешное отображение страницы аутентификации",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"page\": {}\n}"
+            },
+            {
+              "name": "Страница не найдена",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "Сервер временно недоступен",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Вход пользователя в систему",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"anna@example.ru\",\n  \"password\": \"string\",\n  \"role\": \"manager\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Аутентификация пользователя с использованием Bearer Token (токен на предъявителя)"
+          },
+          "response": [
+            {
+              "name": "Успешная аутентификация",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"anna@example.ru\",\n  \"password\": \"string\",\n  \"role\": \"manager\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"token\": \"eyJ0eXAwcvvcb1QiLCJhbGciOsdfsUzI1NiJ9.eyJpZCI6IjEzMzciLCJ1c2VybmFtZSI6ImJpem9uZSIswwwfcI6MTU5NDIwOTYwMCwicm9sZSI6InVzZXIifQ.ZvkYYnyM92xvxcvNW9_hSis7_x3_9rymsDcvcbvuOcc1I\"\n}"
+            },
+            {
+              "name": "Ошибка аутентификации, неверные учетные данные",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"anna@example.ru\",\n  \"password\": \"string\",\n  \"role\": \"manager\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "Внутренняя ошибка сервера",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"anna@example.ru\",\n  \"password\": \"string\",\n  \"role\": \"manager\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "analytics",
+      "item": [
+        {
+          "name": "Получить аналитический отчет",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client\": \"string\",\n  \"analysis_period\": \"1950-02-09\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/analytics",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics"
+              ]
+            },
+            "description": "Генерация pdf-отчета по заданным фильтрам"
+          },
+          "response": [
+            {
+              "name": "Отчет успешно сформирован",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"string\",\n  \"analysis_period\": \"1950-02-09\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/analytics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "analytics"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "cookie": [],
+              "body": "string"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"string\",\n  \"analysis_period\": \"1950-02-09\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/analytics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "analytics"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"string\",\n  \"analysis_period\": \"1950-02-09\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/analytics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "analytics"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "product",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Посмотреть товар",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/product/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "product",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "ID"
+                    }
+                  ]
+                },
+                "description": "Просмотр данных о конкретном товаре по его ID"
+              },
+              "response": [
+                {
+                  "name": "Товар найден",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/product/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "product",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}"
+                },
+                {
+                  "name": "Товар не найден",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/product/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "product",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Изменить товар",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/product/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "product",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "ID товара, параметры которого нужно изменить"
+                    }
+                  ]
+                },
+                "description": "Изменение параметров товара"
+              },
+              "response": [
+                {
+                  "name": "параметры товара изменены успешно",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/product/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "product",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID товара, параметры которого нужно изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "некорректный ввод",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/product/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "product",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID товара, параметры которого нужно изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "товар не найден",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/product/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "product",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID товара, параметры которого нужно изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Удалить товар",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/product/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "product",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Идентификатор товара для удаления"
+                    }
+                  ]
+                },
+                "description": "Удаление товара по его идентификатору"
+              },
+              "response": [
+                {
+                  "name": "товар успешно удален",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/product/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "product",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор товара для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "товар не найден",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/product/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "product",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор товара для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "внутренняя ошибка сервера",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/product/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "product",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор товара для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Посмотреть каталог товаров",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/product?name=string&category=string&provider=string&min_price=72899&max_price=5138133",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "product"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "string",
+                  "description": "название товара для поиска"
+                },
+                {
+                  "key": "category",
+                  "value": "string",
+                  "description": "категория товара для поиска"
+                },
+                {
+                  "key": "provider",
+                  "value": "string",
+                  "description": "поставщик товара для поиска"
+                },
+                {
+                  "key": "min_price",
+                  "value": "72899",
+                  "description": "минимальная цена товара для поиска"
+                },
+                {
+                  "key": "max_price",
+                  "value": "5138133",
+                  "description": "максимальная цена товара для поиска"
+                }
+              ]
+            },
+            "description": "Параметры фильтрации товаров в каталоге для поиска"
+          },
+          "response": [
+            {
+              "name": "результаты поиска по запросу",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/product?name=string&category=string&provider=string&min_price=72899&max_price=5138133",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "product"
+                  ],
+                  "query": [
+                    {
+                      "description": "название товара для поиска",
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "description": "категория товара для поиска",
+                      "key": "category",
+                      "value": "string"
+                    },
+                    {
+                      "description": "поставщик товара для поиска",
+                      "key": "provider",
+                      "value": "string"
+                    },
+                    {
+                      "description": "минимальная цена товара для поиска",
+                      "key": "min_price",
+                      "value": "72899"
+                    },
+                    {
+                      "description": "максимальная цена товара для поиска",
+                      "key": "max_price",
+                      "value": "5138133"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"sku\": {\n      \"name\": \"яблоки\",\n      \"category\": \"еда\",\n      \"provider\": {\n        \"name\": \"ООО Ромашка\",\n        \"INN\": \"string\",\n        \"phone\": \"7-495-123-45-67\",\n        \"address\": \"г. Москва, ул. Ленина, 123\",\n        \"id\": 1,\n        \"site\": \"https://www.ooo-camomile.com\"\n      },\n      \"price\": 145\n    },\n    \"quantity\": 10\n  },\n  {\n    \"sku\": {\n      \"name\": \"яблоки\",\n      \"category\": \"еда\",\n      \"provider\": {\n        \"name\": \"ООО Ромашка\",\n        \"INN\": \"string\",\n        \"phone\": \"7-495-123-45-67\",\n        \"address\": \"г. Москва, ул. Ленина, 123\",\n        \"id\": 1,\n        \"site\": \"https://www.ooo-camomile.com\"\n      },\n      \"price\": 145\n    },\n    \"quantity\": 10\n  }\n]"
+            },
+            {
+              "name": "не верные параметры фильтрации",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/product?name=string&category=string&provider=string&min_price=72899&max_price=5138133",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "product"
+                  ],
+                  "query": [
+                    {
+                      "description": "название товара для поиска",
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "description": "категория товара для поиска",
+                      "key": "category",
+                      "value": "string"
+                    },
+                    {
+                      "description": "поставщик товара для поиска",
+                      "key": "provider",
+                      "value": "string"
+                    },
+                    {
+                      "description": "минимальная цена товара для поиска",
+                      "key": "min_price",
+                      "value": "72899"
+                    },
+                    {
+                      "description": "максимальная цена товара для поиска",
+                      "key": "max_price",
+                      "value": "5138133"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Добавить товар",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/product",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "product"
+              ]
+            },
+            "description": "Добавить новый товар в каталог"
+          },
+          "response": [
+            {
+              "name": "товар добавлен",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/product",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": 1,\n  \"product\": {\n    \"sku\": {\n      \"name\": \"яблоки\",\n      \"category\": \"еда\",\n      \"provider\": {\n        \"name\": \"ООО Ромашка\",\n        \"INN\": \"string\",\n        \"phone\": \"7-495-123-45-67\",\n        \"address\": \"г. Москва, ул. Ленина, 123\",\n        \"id\": 1,\n        \"site\": \"https://www.ooo-camomile.com\"\n      },\n      \"price\": 145\n    },\n    \"quantity\": 10\n  }\n}"
+            },
+            {
+              "name": "некорректный ввод",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/product",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "такой товар уже есть",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/product",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "product"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "provider",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Посмотреть поставщика",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/provider/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provider",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Идентификатор поставщика"
+                    }
+                  ]
+                },
+                "description": "Просмотр информации о конкретном поставщике по его ID"
+              },
+              "response": [
+                {
+                  "name": "Поставщик найден",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/provider/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "provider",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор поставщика"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}"
+                },
+                {
+                  "name": "Поставщик не найден",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/provider/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "provider",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор поставщика"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Изменить поставщика",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/provider/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provider",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "ID поставщика, параметры которого нужно изменить"
+                    }
+                  ]
+                },
+                "description": "Изменение поставщика по его идентификатору"
+              },
+              "response": [
+                {
+                  "name": "параметры поставщика изменены успешно",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/provider/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "provider",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID поставщика, параметры которого нужно изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "некорректный ввод",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/provider/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "provider",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID поставщика, параметры которого нужно изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "поставщик не найден",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/provider/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "provider",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID поставщика, параметры которого нужно изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Удалить поставщика",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/provider/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provider",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Идентификатор поставщика для удаления"
+                    }
+                  ]
+                },
+                "description": "Удаление поставщика по его идентификатору"
+              },
+              "response": [
+                {
+                  "name": "поставщик успешно удален",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/provider/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "provider",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор поставщика для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "поставщик не найден",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/provider/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "provider",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор поставщика для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "внутренняя ошибка сервера",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/provider/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "provider",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор поставщика для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Посмотреть список поставщиков",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/provider?name=string&INN=string&phone=string&address=string",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "provider"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "string",
+                  "description": "название поставщика для поиска"
+                },
+                {
+                  "key": "INN",
+                  "value": "string",
+                  "description": "ИНН поставщика для поиска"
+                },
+                {
+                  "key": "phone",
+                  "value": "string",
+                  "description": "телефон поставщика для поиска"
+                },
+                {
+                  "key": "address",
+                  "value": "string",
+                  "description": "адрес поставщика для поиска"
+                }
+              ]
+            },
+            "description": "Параметры фильтрации поставщиков в каталоге для поиска"
+          },
+          "response": [
+            {
+              "name": "результаты поиска по запросу",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/provider?name=string&INN=string&phone=string&address=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provider"
+                  ],
+                  "query": [
+                    {
+                      "description": "название поставщика для поиска",
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "description": "ИНН поставщика для поиска",
+                      "key": "INN",
+                      "value": "string"
+                    },
+                    {
+                      "description": "телефон поставщика для поиска",
+                      "key": "phone",
+                      "value": "string"
+                    },
+                    {
+                      "description": "адрес поставщика для поиска",
+                      "key": "address",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"name\": \"ООО Ромашка\",\n    \"INN\": \"string\",\n    \"phone\": \"7-495-123-45-67\",\n    \"address\": \"г. Москва, ул. Ленина, 123\",\n    \"id\": 1,\n    \"site\": \"https://www.ooo-camomile.com\"\n  },\n  {\n    \"name\": \"ООО Ромашка\",\n    \"INN\": \"string\",\n    \"phone\": \"7-495-123-45-67\",\n    \"address\": \"г. Москва, ул. Ленина, 123\",\n    \"id\": 1,\n    \"site\": \"https://www.ooo-camomile.com\"\n  }\n]"
+            },
+            {
+              "name": "не верные параметры фильтрации",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/provider?name=string&INN=string&phone=string&address=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provider"
+                  ],
+                  "query": [
+                    {
+                      "description": "название поставщика для поиска",
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "description": "ИНН поставщика для поиска",
+                      "key": "INN",
+                      "value": "string"
+                    },
+                    {
+                      "description": "телефон поставщика для поиска",
+                      "key": "phone",
+                      "value": "string"
+                    },
+                    {
+                      "description": "адрес поставщика для поиска",
+                      "key": "address",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Добавить поставщика",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/provider",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "provider"
+              ]
+            },
+            "description": "Добавление нового поставщика в каталог"
+          },
+          "response": [
+            {
+              "name": "поставщик добавлен",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/provider",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provider"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": 1,\n  \"product\": {\n    \"name\": \"ООО Ромашка\",\n    \"INN\": \"string\",\n    \"phone\": \"7-495-123-45-67\",\n    \"address\": \"г. Москва, ул. Ленина, 123\",\n    \"id\": 1,\n    \"site\": \"https://www.ooo-camomile.com\"\n  }\n}"
+            },
+            {
+              "name": "некорректный ввод",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/provider",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provider"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "такой поставщик уже есть",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ООО Ромашка\",\n  \"INN\": \"string\",\n  \"phone\": \"7-495-123-45-67\",\n  \"address\": \"г. Москва, ул. Ленина, 123\",\n  \"id\": 1,\n  \"site\": \"https://www.ooo-camomile.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/provider",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provider"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "order",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Изменить состояние заказа",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"подтвержден\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/order/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "order",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "ID заказа, статус которого надо изменить"
+                    }
+                  ]
+                },
+                "description": "Подтвердить, отменить или изменить статус заказа"
+              },
+              "response": [
+                {
+                  "name": "Заказ успешно изменен",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"подтвержден\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/order/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "order",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID заказа, статус которого надо изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 1,\n    \"start_date\": \"2023-09-30\",\n    \"state\": \"принят\",\n    \"items\": [\n      {\n        \"id\": 1,\n        \"item\": {\n          \"name\": \"яблоки\",\n          \"category\": \"еда\",\n          \"provider\": {\n            \"name\": \"ООО Ромашка\",\n            \"INN\": \"string\",\n            \"phone\": \"7-495-123-45-67\",\n            \"address\": \"г. Москва, ул. Ленина, 123\",\n            \"id\": 1,\n            \"site\": \"https://www.ooo-camomile.com\"\n          },\n          \"price\": 145\n        },\n        \"quantity\": 45\n      },\n      {\n        \"id\": 1,\n        \"item\": {\n          \"name\": \"яблоки\",\n          \"category\": \"еда\",\n          \"provider\": {\n            \"name\": \"ООО Ромашка\",\n            \"INN\": \"string\",\n            \"phone\": \"7-495-123-45-67\",\n            \"address\": \"г. Москва, ул. Ленина, 123\",\n            \"id\": 1,\n            \"site\": \"https://www.ooo-camomile.com\"\n          },\n          \"price\": 145\n        },\n        \"quantity\": 45\n      }\n    ],\n    \"sum\": 145\n  },\n  {\n    \"id\": 1,\n    \"start_date\": \"2023-09-30\",\n    \"state\": \"принят\",\n    \"items\": [\n      {\n        \"id\": 1,\n        \"item\": {\n          \"name\": \"яблоки\",\n          \"category\": \"еда\",\n          \"provider\": {\n            \"name\": \"ООО Ромашка\",\n            \"INN\": \"string\",\n            \"phone\": \"7-495-123-45-67\",\n            \"address\": \"г. Москва, ул. Ленина, 123\",\n            \"id\": 1,\n            \"site\": \"https://www.ooo-camomile.com\"\n          },\n          \"price\": 145\n        },\n        \"quantity\": 45\n      },\n      {\n        \"id\": 1,\n        \"item\": {\n          \"name\": \"яблоки\",\n          \"category\": \"еда\",\n          \"provider\": {\n            \"name\": \"ООО Ромашка\",\n            \"INN\": \"string\",\n            \"phone\": \"7-495-123-45-67\",\n            \"address\": \"г. Москва, ул. Ленина, 123\",\n            \"id\": 1,\n            \"site\": \"https://www.ooo-camomile.com\"\n          },\n          \"price\": 145\n        },\n        \"quantity\": 45\n      }\n    ],\n    \"sum\": 145\n  }\n]"
+                },
+                {
+                  "name": "Некорректный ввод",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"подтвержден\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/order/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "order",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID заказа, статус которого надо изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Заказ не найден",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"подтвержден\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/order/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "order",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID заказа, статус которого надо изменить"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Посмотреть заказы",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/order?id=8455&start_date=1962-11-20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "8455",
+                  "description": "номер заказа для поиска"
+                },
+                {
+                  "key": "start_date",
+                  "value": "1962-11-20",
+                  "description": "дата создания заказа"
+                }
+              ]
+            },
+            "description": "Параметры фильтрации заказов для поиска"
+          },
+          "response": [
+            {
+              "name": "результаты поиска по запросу",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/order?id=8455&start_date=1962-11-20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "order"
+                  ],
+                  "query": [
+                    {
+                      "description": "номер заказа для поиска",
+                      "key": "id",
+                      "value": "8455"
+                    },
+                    {
+                      "description": "дата создания заказа",
+                      "key": "start_date",
+                      "value": "1962-11-20"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": 1,\n    \"start_date\": \"2023-09-30\",\n    \"state\": \"принят\",\n    \"items\": [\n      {\n        \"id\": 1,\n        \"item\": {\n          \"name\": \"яблоки\",\n          \"category\": \"еда\",\n          \"provider\": {\n            \"name\": \"ООО Ромашка\",\n            \"INN\": \"string\",\n            \"phone\": \"7-495-123-45-67\",\n            \"address\": \"г. Москва, ул. Ленина, 123\",\n            \"id\": 1,\n            \"site\": \"https://www.ooo-camomile.com\"\n          },\n          \"price\": 145\n        },\n        \"quantity\": 45\n      },\n      {\n        \"id\": 1,\n        \"item\": {\n          \"name\": \"яблоки\",\n          \"category\": \"еда\",\n          \"provider\": {\n            \"name\": \"ООО Ромашка\",\n            \"INN\": \"string\",\n            \"phone\": \"7-495-123-45-67\",\n            \"address\": \"г. Москва, ул. Ленина, 123\",\n            \"id\": 1,\n            \"site\": \"https://www.ooo-camomile.com\"\n          },\n          \"price\": 145\n        },\n        \"quantity\": 45\n      }\n    ],\n    \"sum\": 145\n  },\n  {\n    \"id\": 1,\n    \"start_date\": \"2023-09-30\",\n    \"state\": \"принят\",\n    \"items\": [\n      {\n        \"id\": 1,\n        \"item\": {\n          \"name\": \"яблоки\",\n          \"category\": \"еда\",\n          \"provider\": {\n            \"name\": \"ООО Ромашка\",\n            \"INN\": \"string\",\n            \"phone\": \"7-495-123-45-67\",\n            \"address\": \"г. Москва, ул. Ленина, 123\",\n            \"id\": 1,\n            \"site\": \"https://www.ooo-camomile.com\"\n          },\n          \"price\": 145\n        },\n        \"quantity\": 45\n      },\n      {\n        \"id\": 1,\n        \"item\": {\n          \"name\": \"яблоки\",\n          \"category\": \"еда\",\n          \"provider\": {\n            \"name\": \"ООО Ромашка\",\n            \"INN\": \"string\",\n            \"phone\": \"7-495-123-45-67\",\n            \"address\": \"г. Москва, ул. Ленина, 123\",\n            \"id\": 1,\n            \"site\": \"https://www.ooo-camomile.com\"\n          },\n          \"price\": 145\n        },\n        \"quantity\": 45\n      }\n    ],\n    \"sum\": 145\n  }\n]"
+            },
+            {
+              "name": "не верные параметры фильтрации",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/order?id=8455&start_date=1962-11-20",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "order"
+                  ],
+                  "query": [
+                    {
+                      "description": "номер заказа для поиска",
+                      "key": "id",
+                      "value": "8455"
+                    },
+                    {
+                      "description": "дата создания заказа",
+                      "key": "start_date",
+                      "value": "1962-11-20"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "item",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Изменить количество товара в корзине",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "61905",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/item/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "item",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "ID товара, количество которого нужно изменить в корзине"
+                    }
+                  ]
+                },
+                "description": "Изменение количества товара по его идентификатору"
+              },
+              "response": [
+                {
+                  "name": "Количество товара успешно изменено",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "61905",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/item/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "item",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID товара, количество которого нужно изменить в корзине"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"item\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 56\n}"
+                },
+                {
+                  "name": "Некорректный ввод",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "61905",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/item/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "item",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID товара, количество которого нужно изменить в корзине"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Товар не найден в корзине",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "61905",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/item/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "item",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "ID товара, количество которого нужно изменить в корзине"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "Удалить товар из корзины",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/item/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "item",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Идентификатор товара для удаления"
+                    }
+                  ]
+                },
+                "description": "Удаление товара из корзины по его идентификатору"
+              },
+              "response": [
+                {
+                  "name": "Товар успешно удален из корзины",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/item/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "item",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор товара для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Товар не найден",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/item/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "item",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор товара для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Внутренняя ошибка сервера",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/item/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "item",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1",
+                          "description": "Идентификатор товара для удаления"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Посмотреть товары в корзине",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/item",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "item"
+              ]
+            },
+            "description": "Товары в корзине"
+          },
+          "response": [
+            {
+              "name": "товары в корзине",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/item",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "item"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": 1,\n    \"item\": {\n      \"name\": \"яблоки\",\n      \"category\": \"еда\",\n      \"provider\": {\n        \"name\": \"ООО Ромашка\",\n        \"INN\": \"string\",\n        \"phone\": \"7-495-123-45-67\",\n        \"address\": \"г. Москва, ул. Ленина, 123\",\n        \"id\": 1,\n        \"site\": \"https://www.ooo-camomile.com\"\n      },\n      \"price\": 145\n    },\n    \"quantity\": 45\n  },\n  {\n    \"id\": 1,\n    \"item\": {\n      \"name\": \"яблоки\",\n      \"category\": \"еда\",\n      \"provider\": {\n        \"name\": \"ООО Ромашка\",\n        \"INN\": \"string\",\n        \"phone\": \"7-495-123-45-67\",\n        \"address\": \"г. Москва, ул. Ленина, 123\",\n        \"id\": 1,\n        \"site\": \"https://www.ooo-camomile.com\"\n      },\n      \"price\": 145\n    },\n    \"quantity\": 45\n  }\n]"
+            },
+            {
+              "name": "внутренняя ошибка сервера",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/item",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "item"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Добавить товар в корзину",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 1,\n  \"item\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 45\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/item",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "item"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "товар добавлен",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 1,\n  \"item\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 45\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/item",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "item"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": 1,\n  \"product\": {\n    \"id\": 1,\n    \"item\": {\n      \"name\": \"яблоки\",\n      \"category\": \"еда\",\n      \"provider\": {\n        \"name\": \"ООО Ромашка\",\n        \"INN\": \"string\",\n        \"phone\": \"7-495-123-45-67\",\n        \"address\": \"г. Москва, ул. Ленина, 123\",\n        \"id\": 1,\n        \"site\": \"https://www.ooo-camomile.com\"\n      },\n      \"price\": 145\n    },\n    \"quantity\": 45\n  }\n}"
+            },
+            {
+              "name": "некорректный ввод",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 1,\n  \"item\": {\n    \"name\": \"яблоки\",\n    \"category\": \"еда\",\n    \"provider\": {\n      \"name\": \"ООО Ромашка\",\n      \"INN\": \"string\",\n      \"phone\": \"7-495-123-45-67\",\n      \"address\": \"г. Москва, ул. Ленина, 123\",\n      \"id\": 1,\n      \"site\": \"https://www.ooo-camomile.com\"\n    },\n    \"price\": 145\n  },\n  \"quantity\": 45\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/item",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "item"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJ0eXAwcvvcb1QiLCJhbGciOsdfsUzI1NiJ9.eyJpZCI6IjEzMzciLCJ1c2VybmFtZSI6ImJpem9uZSIswwwfcI6MTU5NDIwOTYwMCwicm9sZSI6InVzZXIifQ.ZvkYYnyM92xvxcvNW9_hSis7_x3_9rymsDcvcbvuOcc1I",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://virtserver.swaggerhub.com/VICHIGOVAANNA/Internet-shop/2.0.0"
+    }
+  ]
+}
